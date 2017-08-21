@@ -1,0 +1,385 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: white;
+    font-family: palatino;
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+
+#welcome {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#dollar {
+    width: 200px;
+    height: 250px;
+}
+
+.welcome-text {
+    margin-top: 10px;
+}
+
+.welcome-text-bold {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#pending-requests {
+    font-size: 18px;
+    position: absolute;
+    left: 600px;
+    top: 110px;
+    color: #FFAD00;
+}
+
+#reg-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-input {
+    margin-top: 20px;
+}
+
+.reg-button {
+    height: 30px;
+    width: 120px;
+    background-color: #FFAD00;
+    color: black;
+    font: 20px bold;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    grid-column: 1 / 4;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+
+#logo-container {
+    grid-column: 1 / 4;
+    grid-row: 1;
+    height: 170px;
+    border-bottom: 5px solid black;
+    background-color: white;
+}
+
+#small-dollar {
+    height: 120px;
+    width: 100px;
+    margin-top: 20px;
+    position: absolute;
+    left: 1300px;
+}
+
+.link {
+    margin-right: 33px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#profile-container {
+    grid-column: 1 / 4;
+    grid-row: 1;
+}
+
+#small-profile-pic-container {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.links-container {
+    display: inline-block;
+    margin-left: 380px;
+    position: absolute;
+    top: 65px;
+}
+
+#small-profile-pic {
+    width: 100px;
+    height: 120px;
+}
+
+#profilepic-and-text-container {
+    display: flex;
+    padding-top: 130px;
+    /*margin-top: 40px;*/
+    margin-bottom: 50px;
+}
+
+#big-profile-pic {
+    width: 300px;
+    height: 360px;
+    display: inline-block;
+    float: left;
+    margin-left: 200px;
+    object-fit: cover;
+}
+
+#profile-textarea {
+    font-size: 15px;
+}
+
+#profile-text {
+    display: inline-block;
+    float: right;
+    width: 600px;
+    margin-left: 20px;
+}
+
+
+#clear {
+    clear: both;
+}
+
+#username {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#profile-pic-upload-container {
+    background-color: #FFFFCC;
+    width: 400px;
+    height: 200px;
+    border-style: solid;
+    border-color: #FFAD00;
+    border-radius: 10px;
+    margin-left: 500px;
+    border-width: 2px;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+#hide-upload {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 320px;
+    cursor: pointer;
+}
+
+h3 {
+    padding-top: 0px;
+    margin-bottom: 25px;
+}
+
+#pic-file-upload {
+    position: relative;
+    overflow: hidden;
+    background-color: #FFAD00;
+    color: black;
+    width: 110px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+#pic-upload-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+textarea {
+    margin-top: 20px;
+}
+
+#bio-text{
+    font-size: 18px;
+}
+
+#bio-edit-button {
+    height: 30px;
+    width: 120px;
+    background-color: #FFAD00;
+    color: black;
+    font: 20px bold;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+.bio-link {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+
+.friend-button {
+    height: 30px;
+    width: 200px;
+    background-color: #FFAD00;
+    color: black;
+    font: 20px bold;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.friends-heading {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+#friend-requests {
+    margin-top: 150px;
+    margin-left: 30px;
+}
+
+#friends-container {
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.friends-user {
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-right: 130px;
+}
+
+
+.friends-image {
+    width: 170px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.friends-name {
+    margin-left: 13px;
+    margin-top: 10px;
+}
+
+#friends {
+    margin-top: 60px;
+}
+
+.friends-page-button {
+    height: 25px;
+    width: 150px;
+    background-color: #FFAD00;
+    color: black;
+    font: 15px bold;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#online-container {
+    margin-top: 100px;
+    margin-left: 60px;
+}
+
+#online-heading {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.online-user {
+    margin-bottom: 35px;
+    display: inline-block;
+    margin-right: 70px;
+}
+
+.online-user-name {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#messages-container {
+    height: 350px;
+    width: 600px;
+    border: 2px solid #FFE400;
+    border-bottom: none;
+    overflow-y: scroll;
+    background-color: #FFFFE0;
+}
+
+#chat-container {
+    margin-top: 100px;
+    margin-left: 450px;
+}
+
+#message-textarea {
+    width: 600px;
+    margin-top: 0;
+    font-size: 15px;
+    border: 2px solid #FFE400;
+}
+
+.message-image {
+    width: 70px;
+    height: 80px;
+}
+
+.message-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.message-text {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 7px;
+}
+
+.message-timestamp {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #778899;
+}
