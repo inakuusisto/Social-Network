@@ -74,8 +74,6 @@ app.post('/register', function(req, res) {
 
     functions.hashPassword(req.body.password).then(function(hash) {
         functions.addUserData(req.body.first, req.body.last, req.body.email, hash).then(function(results) {
-            // console.log(results);
-            // console.log(req.body);
             req.session.user = {
                 userId: results.rows[0].id,
                 firstName: req.body.first,
@@ -100,7 +98,6 @@ app.post('/login', function(req, res) {
     functions.getUserData(req.body.email).then(function(results) {
         functions.checkPassword(req.body.password, results.rows[0].password).then(function(doesMatch) {
             if (doesMatch) {
-                console.log('#######match')
                 req.session.user = {
                     userId: results.rows[0].id,
                     firstName: results.rows[0].first_name,
@@ -401,18 +398,6 @@ io.on('connection', function(socket) {
         }
 
     });
-
-    // socket.on('canceledRequest', function(data) {
-    //     console.log('tämä on otherUserId###', data);
-    //     const otherUser = onlineUsers.find(user => user.userId == data.otherUserId);
-    //     if(otherUser) {
-    //         // console.log('tämä on acceptor', acceptor.socketId);
-    //         io.sockets.sockets[otherUser.socketId].emit('canceledRequest', {
-    //             changeOfRequest: -1
-    //         });
-    //     }
-    //
-    // });
 
 });
 
