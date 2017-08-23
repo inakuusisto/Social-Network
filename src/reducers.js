@@ -78,12 +78,5 @@ export default function(state = {}, action) {
             });
         }
     }
-    // if (action.type == 'CANCELED_REQUEST') {
-    //     if(state.requests) {
-    //         state = Object.assign({}, state, {
-    //             requests: parseInt(state.requests) + parseInt(action.changeOfRequest)
-    //         });
-    //     }
-    // }
     return state;
 }

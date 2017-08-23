@@ -14,6 +14,8 @@ const io = require('socket.io')(server);
 let onlineUsers = [];
 
 
+//          SETUP
+
 if (process.env.NODE_ENV != 'production') {
     app.use(require('./build'));
 }
@@ -52,6 +54,10 @@ var uploader = multer({
 });
 
 
+
+//          ROUTES
+
+
 app.get('/welcome', function(req, res){
     if (req.session.user) {
         res.redirect('/');
@@ -70,7 +76,6 @@ app.get('/', function(req,res) {
 
 
 app.post('/register', function(req, res) {
-    // console.log('tämä on request', req.body);
 
     functions.hashPassword(req.body.password).then(function(hash) {
         functions.addUserData(req.body.first, req.body.last, req.body.email, hash).then(function(results) {
@@ -93,7 +98,6 @@ app.post('/register', function(req, res) {
 
 
 app.post('/login', function(req, res) {
-    // console.log('tämä on request', req.body);
 
     functions.getUserData(req.body.email).then(function(results) {
         functions.checkPassword(req.body.password, results.rows[0].password).then(function(doesMatch) {
@@ -122,7 +126,6 @@ app.post('/login', function(req, res) {
 
 app.get('/user', function(req, res) {
     functions.getUserData(req.session.user.email).then(function(results) {
-        // console.log('These are the results', results.rows[0]);
         res.json(results.rows[0]);
     }).catch(function(err) {
         console.log(err);
@@ -149,7 +152,6 @@ app.post('/upload', uploader.single('file'), function(req, res) {
 
 
 app.post('/bio', function(req, res) {
-    // console.log('######hello', req.body.bio, req.session.user.userId);
     functions.updateDbWithBio(req.body.bio, req.session.user.userId).then(function() {
         res.json({
             success: true,
@@ -163,7 +165,6 @@ app.post('/bio', function(req, res) {
 
 app.post('/otheruserprofile', function(req, res) {
     functions.getUserDataById(req.body.id).then(function(results) {
-        // console.log(results.rows[0]);
         res.json(results.rows[0]);
     }).catch(function(err) {
         console.log(err);
@@ -174,7 +175,6 @@ app.post('/otheruserprofile', function(req, res) {
 
 app.post('/status', function(req, res) {
     functions.getFriendStatus(req.body.otherUserId, req.session.user.userId).then(function(results) {
-        // console.log(results.rows[0]);
         res.json(results.rows[0]);
     }).catch(function(err) {
         console.log(err);
@@ -205,7 +205,6 @@ app.post('/makerequest', function(req, res) {
 
 
 app.post('/cancel', function(req, res) {
-    // console.log('this is the body', req.body.status, req.body.otherUserId);
     functions.updateRelationshipStatus(req.body.status, req.body.otherUserId, req.session.user.userId).then(function() {
         res.json({
             success: true
@@ -217,7 +216,6 @@ app.post('/cancel', function(req, res) {
 
 
 app.post('/end', function(req, res) {
-    // console.log('this is the body', req.body.otherUserId);
     functions.endFriendship(req.body.otherUserId, req.session.user.userId).then(function() {
         res.json({
             success: true
@@ -229,7 +227,6 @@ app.post('/end', function(req, res) {
 
 
 app.post('/accept', function(req, res) {
-    // console.log('this is the body',req.body.otherUserId);
     functions.updateAccept(req.body.otherUserId, req.session.user.userId).then(function() {
         res.json({
             success: true
@@ -242,7 +239,6 @@ app.post('/accept', function(req, res) {
 
 app.get('/friend-requests', function(req, res) {
     functions.getFriendRequests(req.session.user.userId).then(function(results) {
-        // console.log('##################', results.rows);
         for (var i=0; i<results.rows.length; i++) {
             if (results.rows[i].image) {
                 results.rows[i].image = awsS3Url + '/' + results.rows[i].image;
@@ -269,7 +265,6 @@ app.get('/connected/:socketId', function(req, res) {
                     data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
                 }
             }
-            // console.log('nämä on uuden tiedot', data);
             io.sockets.emit('userJoined', {
                 newUser: data.rows
             });
@@ -283,7 +278,6 @@ app.get('/connected/:socketId', function(req, res) {
                     users.rows[i].image = awsS3Url + '/' + users.rows[i].image;
                 }
             }
-            // console.log(users);
             io.sockets.sockets[req.params.socketId].emit('onlineUsers', {
                 users:users.rows
             });
@@ -297,7 +291,6 @@ app.get('/connected/:socketId', function(req, res) {
                     data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
                 }
             }
-            // console.log('tämä on messageadata', data);
             io.sockets.sockets[req.params.socketId].emit('chatMessages', {
                 messages:data.rows
             });
@@ -306,7 +299,6 @@ app.get('/connected/:socketId', function(req, res) {
         });
 
         functions.getPendingRequests(req.session.user.userId).then(function(data) {
-            // console.log('#####näin monta requestia', data.rows[0].count);
             io.sockets.sockets[req.params.socketId].emit('friendRequests', {
                 requests:data.rows[0].count
             });
@@ -343,7 +335,6 @@ io.on('connection', function(socket) {
         onlineUsers = onlineUsers.filter(function(u) {
             return u.socketId != socket.id;
         });
-        // console.log('tämä on lähtevät', leavingUser);
         io.sockets.emit('userLeft', {leavingUser});
     });
 
@@ -352,7 +343,6 @@ io.on('connection', function(socket) {
     });
 
     socket.on('chatMessage', function(data) {
-        // console.log(data);
 
         functions.addMessage(data.userId, data.message).then(function(data) {
             functions.getMessageAndUser(data.rows[0].id).then(function(messageData) {
@@ -361,7 +351,6 @@ io.on('connection', function(socket) {
                         messageData.rows[i].image = awsS3Url + '/' + messageData.rows[i].image;
                     }
                 }
-                // console.log(messageData.rows);
                 io.sockets.emit('chatMessage', {
                     newMessage: messageData.rows
                 });
@@ -375,7 +364,6 @@ io.on('connection', function(socket) {
     });
 
     socket.on('newFriendRequest', function(data) {
-        // console.log(data);
         const receivingUser = onlineUsers.find(user => user.userId == data.otherUserId);
         if(receivingUser) {
             console.log('tämä on receiver', receivingUser.socketId);
@@ -391,7 +379,6 @@ io.on('connection', function(socket) {
         console.log('tämä on userId###', data);
         const acceptor = onlineUsers.find(user => user.userId == data.userId);
         if(acceptor) {
-            // console.log('tämä on acceptor', acceptor.socketId);
             io.sockets.sockets[acceptor.socketId].emit('acceptPendingRequest', {
                 changeOfRequests: -1
             });

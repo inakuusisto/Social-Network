@@ -105,10 +105,6 @@ export default class Otheruserprofile extends React.Component {
             console.log(error);
         });
 
-        // this.props.socket.emit('canceledRequest', {
-        //     otherUserId: this.props.params.id
-        // });
-
     }
 
 

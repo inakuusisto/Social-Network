@@ -60,7 +60,6 @@ export default class Profile extends React.Component {
             contentType: false
         })
         .then(({data}) => {
-            // console.log(data.fileName);
             if(data.success) {
                 this.setState({
                     uploadDialogVisible: false,
@@ -76,13 +75,11 @@ export default class Profile extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // alert('Value ' + this.state.bioinput);
 
         axios.post('/bio', {
             bio: this.state.bioinput
         })
         .then(({data}) => {
-            // console.log(data.fileName);
             if(data.success) {
                 this.setState({
                     editBioVisible: false

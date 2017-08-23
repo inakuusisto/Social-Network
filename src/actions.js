@@ -86,10 +86,3 @@ export function acceptPendingRequest(changeOfRequests) {
         changeOfRequests: changeOfRequests.changeOfRequests
     };
 }
-
-// export function canceledRequest(changeOfRequest) {
-//     return {
-//         type: 'CANCELED_REQUEST',
-//         changeOfRequest: changeOfRequest.changeOfRequest
-//     };
-// }
