@@ -10,6 +10,7 @@ const path = require('path');
 const awsS3Url = "https://s3.amazonaws.com/inasocial";
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const csurf = require('csurf');
 
 let onlineUsers = [];
 
@@ -31,6 +32,14 @@ app.use(cookieSession({
     secret: 'funny string',
     maxAge: 1000 * 60 * 60 * 24 * 14
 }));
+
+
+app.use(csurf());
+app.use(function(req, res, next){
+    res.cookie('t', req.csrfToken());
+    next();
+});
+
 
 app.use(express.static(__dirname + '/public/'));
 

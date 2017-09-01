@@ -4,7 +4,7 @@ import { onlineUsers, userJoined, userLeft, chatMessages, chatMessage, friendReq
 import { newFriendRequest } from './actions';
 import { acceptPendingRequest } from './actions';
 import * as io from 'socket.io-client';
-import axios from 'axios';
+import axios from './axios';
 
 let socket;
 

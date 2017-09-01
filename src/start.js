@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import { Router, Route, Link, IndexRoute, IndexRedirect, hashHistory, browserHistory } from 'react-router';
 import { Welcome } from './welcome';
 import Registration from './registration';
 import { Logo } from './logo';
@@ -27,9 +27,9 @@ if (location.pathname == '/welcome') {
     const router = (
         <Router history={hashHistory}>
             <Route path="/" component={Welcome}>
-            <Route path="/login" component={Login} />
-            <IndexRoute component={Registration} />
-        </Route>
+                <Route path="/login" component={Login} />
+                <IndexRoute component={Registration} />
+            </Route>
         </Router>
     );
 
@@ -39,15 +39,18 @@ if (location.pathname == '/welcome') {
 
     const router = (
         <Provider store={store}>
-        <Router history={browserHistory}>
-        <Route path="/" component={App}>
-        <IndexRoute component={Profile} />
-        <Route path="/user/:id" component={Otheruserprofile}/>
-        <Route path="/friends" component={Friends}/>
-        <Route path="/online" component={Online}/>
-        <Route path="/chat" component={Chat}/>
-        </Route>
-        </Router>
+            <Router history={browserHistory}>
+                <Route path="/" component={App}>
+                <IndexRoute component={Profile} />
+                <Route path="/user/:id" component={Otheruserprofile}/>
+                <Route path="/friends" component={Friends}/>
+                <Route path="/online" component={Online}/>
+                <Route path="/chat" component={Chat}/>
+            </Route>
+            <Route path="*">
+                <IndexRedirect to='/' />
+            </Route>
+            </Router>
         </Provider>
     );
 

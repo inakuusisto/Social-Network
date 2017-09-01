@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios from './axios';
 import { Logo } from './logo';
 const awsS3Url = "https://s3.amazonaws.com/inasocial";
 import Profile from './profile';

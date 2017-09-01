@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './axios';
 
 export function receiveFriendRequests() {
     return axios.get('/friend-requests').then( ({data}) => {
