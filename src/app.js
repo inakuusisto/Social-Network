@@ -39,8 +39,6 @@ class App extends React.Component {
             return null;
         }
 
-
-        // console.log('this is the object', this.state);
         const children = React.cloneElement(this.props.children, {
             userId: this.state.userId,
             firstName: this.state.firstName,

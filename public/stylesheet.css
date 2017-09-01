@@ -64,6 +64,11 @@ h1 {
 
 .reg-input {
     margin-top: 20px;
+    padding: 12px 20px;
+    width: 200px;
+    border: 1px solid #444444;
+    border-radius: 10px;
+    font-size: 12px;
 }
 
 .reg-button {
@@ -75,7 +80,7 @@ h1 {
     border-radius: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 5px;
+    margin-left: 35px;
 }
 
 .error-message {
