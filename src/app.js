@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 
-class App extends React.Component {
+export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -23,8 +23,7 @@ class App extends React.Component {
                 userId: data.id,
                 firstName: data.first_name,
                 lastName: data.last_name,
-                profilePicUrl: data.image ? awsS3Url + '/' + data.image : '../images/profile.png',
-                bio: data.bio
+                profilePicUrl: data.image ? awsS3Url + '/' + data.image : '../images/profile.png'
             })
         }).catch((error) => {
             console.log(error);
@@ -43,16 +42,12 @@ class App extends React.Component {
             userId: this.state.userId,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            profilePicUrl: this.state.profilePicUrl,
-            bio: this.state.bio
+            profilePicUrl: this.state.profilePicUrl
         });
 
         return (
             <div id='app'>
             <div id='logo-container'><Logo />
-            {!this.props.requests || this.props.requests ==0 && <p id='pending-requests'></p>}
-            {this.props.requests && this.props.requests !=0 && this.props.requests !=1 && <p id='pending-requests'>You have {this.props.requests} pending friend-requests</p>}
-            {this.props.requests && this.props.requests ==1 && <p id='pending-requests'>You have {this.props.requests} pending friend-request</p>}
             </div>
             <div id='profile-container'>
             <Socket>
@@ -63,11 +58,3 @@ class App extends React.Component {
         );
     }
 }
-
-const mapStateToProps = function(state) {
-    return {
-        requests: state.requests && state.requests
-    }
-}
-
-export default connect(mapStateToProps)(App);

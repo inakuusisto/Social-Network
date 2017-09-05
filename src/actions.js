@@ -65,24 +65,3 @@ export function chatMessage(newMessage) {
         newMessage: newMessage.newMessage
     };
 }
-
-export function friendRequests(requests) {
-    return {
-        type: 'FRIEND_REQUESTS',
-        requests: requests.requests
-    };
-}
-
-export function newFriendRequest(newRequest) {
-    return {
-        type: 'NEW_FRIEND_REQUEST',
-        newRequest: newRequest.newRequest
-    };
-}
-
-export function acceptPendingRequest(changeOfRequests) {
-    return {
-        type: 'ACCEPT_PENDING_REQUEST',
-        changeOfRequests: changeOfRequests.changeOfRequests
-    };
-}

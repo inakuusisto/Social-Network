@@ -21,6 +21,17 @@ export default class Profile extends React.Component {
 
     };
 
+    componentDidMount() {
+
+        axios.get('/bio').then(({data}) => {
+            this.setState({
+                bio: data.bio
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
 
     showUploader() {
         this.setState({uploadDialogVisible: true})
@@ -83,9 +94,9 @@ export default class Profile extends React.Component {
             console.log(data.bio);
             if(data.success) {
                 this.setState({
-                    editBioVisible: false
+                    editBioVisible: false,
+                    bio: data.bio
                 })
-                window.location.reload()
             }
         }).catch(function (error) {
             console.log(error);
@@ -102,9 +113,9 @@ export default class Profile extends React.Component {
             <img id='big-profile-pic' src={this.state.profilePicUrl} />
             <div id='profile-text'>
             <p id='username'>{this.props.firstName} {this.props.lastName}</p>
-            {!this.props.bio && <p className='bio-link' onClick={this.showEditBio}>Add your bio now</p>}
-            {this.props.bio && <p id='bio-text'>{this.props.bio}</p>}
-            {this.props.bio && <p className='bio-link' onClick={this.showEditBio}>Edit</p>}
+            {!this.state.bio && <p className='bio-link' onClick={this.showEditBio}>Add your bio now</p>}
+            {this.state.bio && <p id='bio-text'>{this.state.bio}</p>}
+            {this.state.bio && <p className='bio-link' onClick={this.showEditBio}>Edit</p>}
             {this.state.editBioVisible && <ProfileEdit handleSubmit={this.handleSubmit} value={this.state.bioinput} handleChange={this.handleChange} />}
             </div>
             </div>

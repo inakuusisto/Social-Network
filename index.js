@@ -142,6 +142,17 @@ app.get('/user', function(req, res) {
 });
 
 
+app.get('/bio', function(req, res) {
+    functions.getUserData(req.session.user.email).then(function(results) {
+        res.json({
+            bio: results.rows[0].bio
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
 app.post('/upload', uploader.single('file'), function(req, res) {
 
     if (req.file) {
@@ -306,15 +317,6 @@ app.get('/connected/:socketId', function(req, res) {
         }).catch(function(err) {
             console.log(err);
         });
-
-        functions.getPendingRequests(req.session.user.userId).then(function(data) {
-            io.sockets.sockets[req.params.socketId].emit('friendRequests', {
-                requests:data.rows[0].count
-            });
-        }).catch(function(err) {
-            console.log(err);
-        });
-
     }
     console.log(onlineUsers);
 
@@ -370,29 +372,6 @@ io.on('connection', function(socket) {
         }).catch(function(err) {
             console.log(err);
         });
-    });
-
-    socket.on('newFriendRequest', function(data) {
-        const receivingUser = onlineUsers.find(user => user.userId == data.otherUserId);
-        if(receivingUser) {
-            console.log('tämä on receiver', receivingUser.socketId);
-
-            io.sockets.sockets[receivingUser.socketId].emit('newFriendRequest', {
-                newRequest: 1
-            });
-
-        }
-    });
-
-    socket.on('acceptPendingRequest', function(data) {
-        console.log('tämä on userId###', data);
-        const acceptor = onlineUsers.find(user => user.userId == data.userId);
-        if(acceptor) {
-            io.sockets.sockets[acceptor.socketId].emit('acceptPendingRequest', {
-                changeOfRequests: -1
-            });
-        }
-
     });
 
 });

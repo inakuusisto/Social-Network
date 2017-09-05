@@ -59,24 +59,5 @@ export default function(state = {}, action) {
             });
         }
     }
-    if (action.type == 'FRIEND_REQUESTS') {
-        state = Object.assign({}, state, {
-            requests: action.requests
-        });
-    }
-    if (action.type == 'NEW_FRIEND_REQUEST') {
-        if(state.requests) {
-            state = Object.assign({}, state, {
-                requests: parseInt(state.requests) + parseInt(action.newRequest)
-            });
-        }
-    }
-    if (action.type == 'ACCEPT_PENDING_REQUEST') {
-        if(state.requests) {
-            state = Object.assign({}, state, {
-                requests: parseInt(state.requests) + parseInt(action.changeOfRequests)
-            });
-        }
-    }
     return state;
 }

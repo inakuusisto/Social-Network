@@ -77,14 +77,13 @@ export default class Otheruserprofile extends React.Component {
         .then(({data}) => {
             console.log(data);
             if(data.success) {
-                window.location.reload()
+                this.setState({
+                    makeRequest: false,
+                    cancelRequest: true
+                })
             }
         }).catch((error) => {
             console.log(error);
-        });
-
-        this.props.socket.emit('newFriendRequest', {
-            otherUserId: this.props.params.id
         });
 
     }
@@ -99,7 +98,10 @@ export default class Otheruserprofile extends React.Component {
         .then(({data}) => {
             console.log(data);
             if(data.success) {
-                window.location.reload()
+                this.setState({
+                    cancelRequest: false,
+                    makeRequest: true
+                })
             }
         }).catch((error) => {
             console.log(error);
@@ -116,7 +118,10 @@ export default class Otheruserprofile extends React.Component {
         .then(({data}) => {
             console.log(data);
             if(data.success) {
-                window.location.reload()
+                this.setState({
+                    acceptRequest: false,
+                    endFriendship: true
+                })
             }
         }).catch((error) => {
             console.log(error);
@@ -134,7 +139,10 @@ export default class Otheruserprofile extends React.Component {
         .then(({data}) => {
             console.log(data);
             if(data.success) {
-                window.location.reload()
+                this.setState({
+                    endFriendship: false,
+                    makeRequest: true
+                })
             }
         }).catch((error) => {
             console.log(error);

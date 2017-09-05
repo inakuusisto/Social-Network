@@ -38,7 +38,7 @@ function hashPassword(password) {
 
 function addUserData (first, last, email, password) {
     return db.query('INSERT INTO users(first_name, last_name, email, password) values($1, $2, $3, $4) returning id',
-    [first, last, email, password]);
+        [first, last, email, password]);
 }
 
 
@@ -166,9 +166,6 @@ function getMessages() {
     return db.query ('SELECT users.id, users.first_name, users.last_name, users.image, messages.message, messages.timestamp FROM users JOIN messages ON users.id = messages.user_id ORDER BY messages.timestamp DESC LIMIT 10');
 }
 
-function getPendingRequests(userId) {
-    return db.query('SELECT COUNT(*) FROM friend_requests WHERE status=2 AND recipient_id=$1', [userId]);
-}
 
 module.exports.hashPassword = hashPassword;
 module.exports.addUserData = addUserData;
@@ -189,4 +186,3 @@ module.exports.getUsersByIds = getUsersByIds;
 module.exports.addMessage = addMessage;
 module.exports.getMessageAndUser = getMessageAndUser;
 module.exports.getMessages = getMessages;
-module.exports.getPendingRequests = getPendingRequests;

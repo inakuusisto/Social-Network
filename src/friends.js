@@ -7,17 +7,11 @@ import { Link } from 'react-router';
 class Friends extends React.Component {
 
     componentDidMount() {
-        if (!this.props.users) {
-            this.props.dispatch(receiveFriendRequests());
-        }
+        this.props.dispatch(receiveFriendRequests());
     }
 
     acceptFriendRequest(id) {
         this.props.dispatch(acceptFriendRequest(id));
-
-        this.props.socket.emit('acceptPendingRequest', {
-            userId: this.props.userId
-        });
     }
 
 
@@ -68,19 +62,19 @@ class Friends extends React.Component {
 )
 
 
-    return (
-        <div>
-        <div id='small-profile-pic-container'><ProfilePic profilePicUrl={this.props.profilePicUrl} firstName={this.props.firstName} /><div className='links-container'><Link className='link' to='/friends'>Friends</Link> <Link className='link' to='/online'>See who is online now</Link><Link className='link' to='/chat'>Chat</Link><a href="/logout" className='link'>Log Out</a></div></div>
-        <div id='friends-container'>
-        <div>
-        {this.props.users.length ? friendRequests : <p className='friends-heading'>You don´t have any pending friend requests</p> }
-        </div>
-        <div id='friends'>
-        {this.props.users.length ? friends : <p className='friends-heading'>You don´t have any friends</p>}
-        </div>
-        </div>
-        </div>
-    );
+return (
+    <div>
+    <div id='small-profile-pic-container'><ProfilePic profilePicUrl={this.props.profilePicUrl} firstName={this.props.firstName} /><div className='links-container'><Link className='link' to='/friends'>Friends</Link> <Link className='link' to='/online'>See who is online now</Link><Link className='link' to='/chat'>Chat</Link><a href="/logout" className='link'>Log Out</a></div></div>
+    <div id='friends-container'>
+    <div>
+    {this.props.users.length ? friendRequests : <p className='friends-heading'>You don´t have any pending friend requests</p> }
+    </div>
+    <div id='friends'>
+    {this.props.users.length ? friends : <p className='friends-heading'>You don´t have any friends</p>}
+    </div>
+    </div>
+    </div>
+);
 }
 
 }
