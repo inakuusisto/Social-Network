@@ -353,6 +353,10 @@ textarea {
     margin-left: 425px;
 }
 
+.message-container {
+    margin-bottom: 10px;
+}
+
 #message-textarea {
     width: 600px;
     margin-top: 0;

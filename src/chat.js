@@ -62,7 +62,7 @@ class Chat extends React.Component {
         const messages = (
             <div id='messages-container' ref={elem => this.elem = elem}>
             {this.props.messages.map((user) =>
-                <div>
+                <div className="message-container">
                     <img className='message-image' src={user.image ? user.image : '../images/profile.png'} />
                     <div className='message-text'>
                         <p className='message-name'>{user.first_name} {user.last_name}</p>
