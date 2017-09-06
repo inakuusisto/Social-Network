@@ -63,24 +63,21 @@ class Chat extends React.Component {
             <div id='messages-container' ref={elem => this.elem = elem}>
             {this.props.messages.map((user) =>
                 <div>
-                <img className='message-image' src={user.image ? user.image : '../images/profile.png'} />
-                <div className='message-text'>
-                <p className='message-name'>{user.first_name} {user.last_name}</p>
-                <p className='message-timestamp'>{new Date(user.timestamp).toLocaleDateString()}, {new Date(user.timestamp).toLocaleTimeString()}</p>
-                <p className='message'>{user.message}</p>
-                </div>
+                    <img className='message-image' src={user.image ? user.image : '../images/profile.png'} />
+                    <div className='message-text'>
+                        <p className='message-name'>{user.first_name} {user.last_name}</p>
+                        <p className='message-timestamp'>{new Date(user.timestamp).toLocaleDateString()}, {new Date(user.timestamp).toLocaleTimeString()}</p>
+                        <p className='message'>{user.message}</p>
+                    </div>
                 </div>
             )}
             </div>
         )
 
         return (
-            <div>
-            <div id='small-profile-pic-container'><ProfilePic profilePicUrl={this.props.profilePicUrl} firstName={this.props.firstName} /><div className='links-container'><Link className='link' to='/friends'>Friends</Link> <Link className='link' to='/online'>See who is online now</Link><Link className='link' to='/chat'>Chat</Link><a href="/logout" className='link'>Log Out</a></div></div>
             <div id='chat-container'>
-            {messages}
-            <textarea id='message-textarea' value={this.state.messageInput} onKeyDown={this.keyPress} onChange={this.handleChange} rows="8" cols="55" placeholder="Write your message here..." />
-            </div>
+                {messages}
+                <textarea id='message-textarea' value={this.state.messageInput} onKeyDown={this.keyPress} onChange={this.handleChange} rows="8" cols="55" placeholder="Write your message here..." />
             </div>
         );
 
@@ -88,15 +85,6 @@ class Chat extends React.Component {
 
 }
 
-
-function ProfilePic(props) {
-    return (
-        <img id='small-profile-pic'
-        src={props.profilePicUrl}
-        alt={props.firstName}
-        />
-    );
-}
 
 const mapStateToProps = function(state) {
     return {

@@ -55,14 +55,14 @@ export default class Registration extends React.Component {
         return (
             <div id='reg-container'>
             {this.state.error && <p className="error-message">Oops, something went wrong. Please try again!</p>}
-            <form onSubmit={this.handleSubmit}>
-            <input className='reg-input' type="text" name="first" value={this.state.first} onChange={this.handleInputChange} placeholder="First name" required /><br />
-            <input className='reg-input' type="text" name="last" value={this.state.last} onChange={this.handleInputChange} placeholder="Last name" required /><br />
-            <input className='reg-input' type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" required /><br />
-            <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
-            <input className='reg-button' type="submit" value="Submit" />
-            </form>
-            <p>If you are already a member, please <Link to='/login'>Login</Link></p>
+                <form onSubmit={this.handleSubmit}>
+                    <input className='reg-input' type="text" name="first" value={this.state.first} onChange={this.handleInputChange} placeholder="First name" required /><br />
+                    <input className='reg-input' type="text" name="last" value={this.state.last} onChange={this.handleInputChange} placeholder="Last name" required /><br />
+                    <input className='reg-input' type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" required /><br />
+                    <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
+                    <input className='reg-button' type="submit" value="Submit" />
+                </form>
+                <p>If you are already a member, please <Link to='/login'>Login</Link></p>
             </div>
 
         );

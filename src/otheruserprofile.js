@@ -153,30 +153,17 @@ export default class Otheruserprofile extends React.Component {
 
     render(props) {
         return (
-            <div>
-            <div id='small-profile-pic-container'><ProfilePic profilePicUrl={this.props.profilePicUrl} firstName={this.props.firstName} /><div className='links-container'><Link className='link' to='/friends'>Friends</Link> <Link className='link' to='/online'>See who is online now</Link><Link className='link' to='/chat'>Chat</Link><a href="/logout" className='link'>Log Out</a></div></div>
             <div id='profilepic-and-text-container'>
-            <img id='big-profile-pic' src={this.state.profilePicUrl} />
-            <div id='profile-text'>
-            <p id='username'>{this.state.firstName} {this.state.lastName}</p>
-            <p id='bio'>{this.state.bio}</p>
-            {this.state.makeRequest && <button className='friend-button' type='button' onClick={this.handleSendRequest}>Send friend request</button>}
-            {this.state.cancelRequest && <button className='friend-button' type='button' onClick={this.handleCancel}>Cancel friend request</button>}
-            {this.state.acceptRequest && <button className='friend-button' type='button' onClick={this.handleAccept}>Accept friend request</button>}
-            {this.state.endFriendship && <button className='friend-button' type='button' onClick={this.handleEndRequest}>End friendship</button>}
-            </div>
-            </div>
+                <img id='big-profile-pic' src={this.state.profilePicUrl} />
+                <div id='profile-text'>
+                    <p id='username'>{this.state.firstName} {this.state.lastName}</p>
+                    <p id='bio'>{this.state.bio}</p>
+                    {this.state.makeRequest && <button className='friend-button' type='button' onClick={this.handleSendRequest}>Send friend request</button>}
+                    {this.state.cancelRequest && <button className='friend-button' type='button' onClick={this.handleCancel}>Cancel friend request</button>}
+                    {this.state.acceptRequest && <button className='friend-button' type='button' onClick={this.handleAccept}>Accept friend request</button>}
+                    {this.state.endFriendship && <button className='friend-button' type='button' onClick={this.handleEndRequest}>End friendship</button>}
+                </div>
             </div>
         );
     }
-}
-
-
-export function ProfilePic(props) {
-    return (
-        <img id='small-profile-pic'
-        src={props.profilePicUrl}
-        alt={props.firstName}
-        />
-    );
 }
