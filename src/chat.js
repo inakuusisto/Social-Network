@@ -63,7 +63,9 @@ class Chat extends React.Component {
             <div id='messages-container' ref={elem => this.elem = elem}>
             {this.props.messages.map((user) =>
                 <div className="message-container">
+                    <Link to={"/user/"+user.id}>
                     <img className='message-image' src={user.image ? user.image : '../images/profile.png'} />
+                    </Link>
                     <div className='message-text'>
                         <p className='message-name'>{user.first_name} {user.last_name}</p>
                         <p className='message-timestamp'>{new Date(user.timestamp).toLocaleDateString()}, {new Date(user.timestamp).toLocaleTimeString()}</p>
