@@ -75,7 +75,7 @@ export default class Otheruserprofile extends React.Component {
             otherUserId: this.props.params.id
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     makeRequest: false,
@@ -96,7 +96,7 @@ export default class Otheruserprofile extends React.Component {
             otherUserId: this.props.params.id
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     cancelRequest: false,
@@ -116,7 +116,7 @@ export default class Otheruserprofile extends React.Component {
             otherUserId: this.props.params.id
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     acceptRequest: false,
@@ -137,7 +137,7 @@ export default class Otheruserprofile extends React.Component {
             otherUserId: this.props.params.id
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     endFriendship: false,

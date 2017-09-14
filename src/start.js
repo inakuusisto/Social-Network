@@ -20,7 +20,7 @@ import Chat from './chat';
 
 const store = createStore(reducer, applyMiddleware(reduxPromise));
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
 
 if (location.pathname == '/welcome') {

@@ -331,7 +331,7 @@ app.get('/logout', function(req, res) {
 
 app.get('*', function(req, res) {
     if(!req.session.user) {
-        res.redirect('/wecome');
+        res.redirect('/welcome');
     }
     res.sendFile(__dirname + '/index.html');
 });

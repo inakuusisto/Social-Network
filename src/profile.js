@@ -47,7 +47,7 @@ export default class Profile extends React.Component {
             bio: this.state.bioinput
         })
         .then(({data}) => {
-            console.log(data.bio);
+            // console.log(data.bio);
             if(data.success) {
                 this.setState({
                     editBioVisible: false,

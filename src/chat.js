@@ -7,7 +7,7 @@ import * as io from 'socket.io-client';
 class Chat extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
+        // console.log(this.props);
 
         this.state = {
             messageInput: ''

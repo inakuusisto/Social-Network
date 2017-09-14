@@ -36,7 +36,7 @@ export default class Registration extends React.Component {
             password: this.state.password
         }).then(({data}) => {
             if(data.success) {
-                console.log('success')
+                // console.log('success')
                 location.replace('/');
             } else {
                 this.setState({
